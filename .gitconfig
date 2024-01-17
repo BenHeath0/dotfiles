@@ -1,0 +1,21 @@
+[user]
+	email = bjheath@mitre.org
+	name = Benjamin Heath
+[init]
+	defaultBranch = main
+[alias]
+    lg = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci%x08%x08%x08%x08%x08%x08) %C(bold blue)<%an>%Creset'
+    lgd = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci%x08%x08%x08%x08%x08%x08) %C(bold blue)<%an>%Creset'
+    lgr = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	fuckup = reset --soft HEAD~1
+
+[mergetool "vscode"]
+    cmd = code -n --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[difftool "vscode"]
+    cmd =code -n --wait --diff $LOCAL $REMOTE
+[merge]
+    tool = vscode
+#    tool = kdiff3
+[diff]
+    tool = vscode
+#    tool = kdiff3

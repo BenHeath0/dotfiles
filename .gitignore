@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.bash_profile
+!.bash_profile.benheath.bash
+!.gitconfig
+!README.md
+!.git-completion.bash
