@@ -1,6 +1,6 @@
 *
 !.gitignore
-!.bash_profile
+!.bash_profile.default
 !.bash_profile.benheath.bash
 !.gitconfig
 !README.md
