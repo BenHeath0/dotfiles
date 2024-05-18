@@ -1,3 +1,4 @@
+# NOTE: This file needs to be at ~/ filepath to work
 [user]
 	email = bjheath@mitre.org
 	name = Benjamin Heath

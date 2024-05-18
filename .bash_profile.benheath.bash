@@ -6,6 +6,10 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
 export NVM_DIR=~/.nvm
 source /opt/homebrew/opt/nvm/nvm.sh
 
@@ -29,7 +33,7 @@ alias kg="kubectl get"
 alias kl="kubectl logs"
 
 # Git Completion
-source ~/.git-completion.bash
+source ~/Developer/dev/.git-completion.bash
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
 ###-begin-npm-completion-###
