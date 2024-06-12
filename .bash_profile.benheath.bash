@@ -6,13 +6,6 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
-export NVM_DIR=~/.nvm
-source /opt/homebrew/opt/nvm/nvm.sh
-
 # Commands I forget about all the time
 # docker rmi -f $(docker images -a -q)
 # psql -h localhost -p 5432 -U scengen -d scengen_meta
@@ -33,8 +26,7 @@ alias kg="kubectl get"
 alias kl="kubectl logs"
 
 # Git Completion
-source ~/Developer/dev/.git-completion.bash
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+source ~/dev/.git-completion.bash
 
 ###-begin-npm-completion-###
 #
