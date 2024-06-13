@@ -1,7 +1,9 @@
 # NOTE: This file needs to be at ~/ filepath to work
 [user]
-	email = bjheath@mitre.org
-	name = Benjamin Heath
+	email = ben.heath@rechargeapps.com
+	name = Ben Heath
+[core]
+	editor = vim
 [init]
 	defaultBranch = main
 [alias]
