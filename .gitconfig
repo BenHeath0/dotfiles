@@ -1,6 +1,6 @@
 # NOTE: This file needs to be at ~/ filepath to work
 [user]
-	email = benjheath0@gmail.com
+	# email = benjheath0@gmail.com // put email here if no override
 	name = Ben Heath
 [core]
 	editor = vim
