@@ -1,6 +1,6 @@
 # NOTE: This file needs to be at ~/ filepath to work
 [user]
-	email = ben.heath@rechargeapps.com
+	email = benjheath0@gmail.com
 	name = Ben Heath
 [core]
 	editor = vim
@@ -13,6 +13,8 @@
 	fuckup = reset --soft HEAD~1
     c = checkout
     cb = checkout -b
+    s = status
+    d = diff
 
 [mergetool "vscode"]
     cmd = code -n --wait --merge $REMOTE $LOCAL $BASE $MERGED
@@ -24,3 +26,11 @@
 [diff]
     tool = vscode
 #    tool = kdiff3
+
+# put this in the root .gitconfig wherever this needs to be applied
+
+# [user]
+# 	email = <override_email>@whatever
+
+# [include]
+#     path = ~/dev/.gitconfig

@@ -25,6 +25,9 @@ alias k="kubectl"
 alias kg="kubectl get"
 alias kl="kubectl logs"
 
+# Git
+alias g="git"
+
 # Git Completion
 source ~/dev/.git-completion.bash
 
