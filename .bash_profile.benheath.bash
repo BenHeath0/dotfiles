@@ -11,7 +11,9 @@ parse_git_branch() {
 # psql -h localhost -p 5432 -U scengen -d scengen_meta
 # docker exec -it scengen_postgres_1 bash
 
-export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+# Override $PS1 bc want to confirm in prestage AND name is too long
+# export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="ben@local \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # Useful things
 alias git_fuckup="git reset --soft HEAD~1"
@@ -27,6 +29,7 @@ alias kl="kubectl logs"
 
 # Git
 alias g="git"
+alias push="git push origin head"
 
 # Git Completion
 source ~/dev/.git-completion.bash
