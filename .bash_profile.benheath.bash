@@ -15,9 +15,6 @@ parse_git_branch() {
 # export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export PS1="ben@local \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-# Useful things
-alias git_fuckup="git reset --soft HEAD~1"
-
 # docker
 alias dockerps="docker ps  --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'"
 alias dc="docker compose"
