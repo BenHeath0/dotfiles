@@ -8,6 +8,7 @@
 	defaultBranch = main
 [alias]
     lg = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci%x08%x08%x08%x08%x08%x08) %C(bold blue)<%an>%Creset'
+    lghead = !"git lg | grep bh/ | head -5"
     lgd = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci%x08%x08%x08%x08%x08%x08) %C(bold blue)<%an>%Creset'
     lgr = log --graph --abbrev-commit --date=iso --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     lga = log --graph --oneline --all --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci%x08%x08%x08%x08%x08%x08) %C(bold blue)<%an>%Creset'
