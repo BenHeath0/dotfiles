@@ -15,6 +15,25 @@ parse_git_branch() {
 # export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export PS1="ben@local \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
+# Function to update the prompt based on virtual environment status
+update_prompt() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Add (venv) only if it’s not already in the prompt
+        if [[ "$PS1" != "(venv) "* ]]; then
+            PS1="(venv) ${ORIGINAL_PS1:-$PS1}"
+        fi
+    else
+        # Reset PS1 if the virtual environment is deactivated
+        PS1="${ORIGINAL_PS1:-$PS1}"
+    fi
+}
+
+# Save the original PS1 to restore later
+ORIGINAL_PS1=$PS1
+
+# Set PROMPT_COMMAND to run update_prompt before displaying each prompt
+PROMPT_COMMAND=update_prompt
+
 # docker
 alias dockerps="docker ps  --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}'"
 alias dc="docker compose"
