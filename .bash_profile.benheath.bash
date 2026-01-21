@@ -50,6 +50,10 @@ alias push="git push origin head"
 # Git Completion
 source ~/dev/.git-completion.bash
 
+# LLM
+alias ca="cursor-agent"
+alias clod="claude"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
