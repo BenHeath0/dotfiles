@@ -13,6 +13,11 @@ The install script will:
 - Symlink dotfiles to `~/`
 - Back up any existing files to `~/.dotfiles-backup/`
 
+To install Homebrew packages:
+```bash
+brew bundle --file=~/dev/Brewfile
+```
+
 ## Machine-Specific Config
 
 Create these optional files for per-machine settings (not tracked in git):
@@ -36,3 +41,4 @@ export WORK_API_KEY="..."
 - `.bash_profile.benheath.bash` — Bash config (if needed)
 - `.git-completion.bash` — Git tab completion
 - `install.sh` — Setup script
+- `Brewfile` — Homebrew packages, casks, and VS Code extensions
