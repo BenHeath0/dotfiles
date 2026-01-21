@@ -28,10 +28,10 @@ Create these optional files for per-machine settings (not tracked in git):
     email = you@work.com
 ```
 
-**~/.zshrc.local** — Shell aliases, paths, work-specific config
+**~/dev/.zshrc.local** — Shell aliases, paths, work-specific config (gitignored)
 ```zsh
-source ~/dev/.zshrc.recharge.zsh
 export WORK_API_KEY="..."
+alias myproject="cd ~/work/myproject"
 ```
 
 ## Files

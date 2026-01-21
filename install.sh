@@ -51,5 +51,5 @@ done
 
 echo ""
 echo "Done! You may want to create these optional local override files:"
-echo "  ~/.gitconfig.local  - for machine-specific git settings (email, signing key)"
-echo "  ~/.zshrc.local      - for machine-specific shell config"
+echo "  ~/.gitconfig.local   - for machine-specific git settings (email, signing key)"
+echo "  ~/dev/.zshrc.local   - for machine-specific shell config (gitignored)"

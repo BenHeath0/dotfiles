@@ -132,5 +132,5 @@ fi
 ###-end-npm-completion-###
 
 # Source machine-specific config if it exists
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/dev/.zshrc.local ]] && source ~/dev/.zshrc.local
 
