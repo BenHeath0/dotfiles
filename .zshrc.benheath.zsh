@@ -1,6 +1,9 @@
 # Enable zsh completion system
 autoload -Uz compinit && compinit
 
+# Add local bin to PATH (for poetry, pipx, etc.)
+export PATH="$PATH:/Users/benheath/.local/bin"
+
 # Git branch in prompt
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -53,7 +56,10 @@ alias g="git"
 alias push="git push origin head"
 
 # Git Completion
-source ~/dev/.git-completion.zsh
+# source ~/dev/.git-completion.zsh
+
+# LLM
+alias ca="cursor-agent"
 
 ###-begin-npm-completion-###
 #
@@ -124,4 +130,7 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+# Source machine-specific config if it exists
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 

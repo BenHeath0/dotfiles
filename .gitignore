@@ -7,3 +7,5 @@
 !.git-completion.bash
 !linux-help.md
 !.zsh*
+!install.sh
+!SETUP_PLAN.md

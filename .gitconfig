@@ -31,10 +31,6 @@
     tool = vscode
 #    tool = kdiff3
 
-# put this in the root .gitconfig wherever this needs to be applied
-
-# [user]
-# 	email = <override_email>@whatever
-
-# [include]
-#     path = ~/dev/.gitconfig
+# Machine-specific overrides (email, signing key, etc.)
+[include]
+    path = ~/.gitconfig.local
