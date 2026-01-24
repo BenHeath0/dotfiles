@@ -13,6 +13,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup"
 FILES=(
     ".zshrc.benheath.zsh:.zshrc"
     ".gitconfig:.gitconfig"
+    "CLAUDE.md:.claude/CLAUDE.md"
 )
 
 backup_and_link() {
@@ -35,7 +36,8 @@ backup_and_link() {
         echo "  Backed up $target to $BACKUP_DIR/$backup_name"
     fi
 
-    # Create symlink
+    # Create parent directory if needed and symlink
+    mkdir -p "$(dirname "$target_path")"
     ln -s "$source_path" "$target_path"
     echo "✓ Linked $target -> $source_path"
 }
@@ -48,6 +50,10 @@ for entry in "${FILES[@]}"; do
     target="${entry##*:}"
     backup_and_link "$source" "$target"
 done
+
+echo ""
+echo "Installing Homebrew packages from Brewfile..."
+brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 echo ""
 echo "Done! You may want to create these optional local override files:"
