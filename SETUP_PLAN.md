@@ -1,8 +1,8 @@
 # Dotfiles Setup Script Plan
 
 ## Current State
-- Repo lives at `~/dev`
-- `~/.zshrc` manually sources `~/dev/.zshrc`
+- Repo lives at `~/dotfiles`
+- `~/.zshrc` manually sources `~/dotfiles/.zshrc`
 - `.gitconfig` requires manual copy/symlink to `~/`
 - Work files (`.zshrc.recharge.zsh`) stay untracked via gitignore
 
@@ -10,7 +10,7 @@
 
 ### 1. Create `install.sh`
 A bash script that:
-- Symlinks dotfiles to `~/` (e.g., `~/.zshrc` -> `~/dev/.zshrc.benheath.zsh`)
+- Symlinks dotfiles to `~/` (e.g., `~/.zshrc` -> `~/dotfiles/.zshrc.benheath.zsh`)
 - Backs up existing files to `~/.dotfiles-backup/` before overwriting
 - Is idempotent (safe to run multiple times)
 
@@ -39,8 +39,8 @@ Keep current pattern but ensure `.local` files aren't accidentally committed.
 ### 4. Update `README.md`
 Document the setup process:
 ```
-git clone <repo> ~/dev
-cd ~/dev && ./install.sh
+git clone <repo> ~/dotfiles
+cd ~/dotfiles && ./install.sh
 # Optionally create ~/.gitconfig.local with [user] email = ...
 ```
 

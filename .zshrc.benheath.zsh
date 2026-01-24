@@ -56,7 +56,7 @@ alias g="git"
 alias push="git push origin head"
 
 # Git Completion
-# source ~/dev/.git-completion.zsh
+# source ~/dotfiles/.git-completion.zsh
 
 # LLM
 alias ca="cursor-agent"
@@ -133,5 +133,5 @@ fi
 ###-end-npm-completion-###
 
 # Source machine-specific config if it exists
-[[ -f ~/dev/.zshrc.local ]] && source ~/dev/.zshrc.local
+[[ -f ~/dotfiles/.zshrc.local ]] && source ~/dotfiles/.zshrc.local
 

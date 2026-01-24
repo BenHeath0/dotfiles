@@ -5,8 +5,8 @@ Personal development environment configuration.
 ## Setup
 
 ```bash
-git clone <repo> ~/dev
-cd ~/dev && ./install.sh
+git clone <repo> ~/dotfiles
+cd ~/dotfiles && ./install.sh
 ```
 
 The install script will:
@@ -15,7 +15,7 @@ The install script will:
 
 To install Homebrew packages:
 ```bash
-brew bundle --file=~/dev/Brewfile
+brew bundle --file=~/dotfiles/Brewfile
 ```
 
 ## Machine-Specific Config
@@ -28,7 +28,7 @@ Create these optional files for per-machine settings (not tracked in git):
     email = you@work.com
 ```
 
-**~/dev/.zshrc.local** — Shell aliases, paths, work-specific config (gitignored)
+**~/dotfiles/.zshrc.local** — Shell aliases, paths, work-specific config (gitignored)
 ```zsh
 export WORK_API_KEY="..."
 alias myproject="cd ~/work/myproject"

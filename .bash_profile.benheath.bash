@@ -48,7 +48,7 @@ alias g="git"
 alias push="git push origin head"
 
 # Git Completion
-source ~/dev/.git-completion.bash
+source ~/dotfiles/.git-completion.bash
 
 # LLM
 alias ca="cursor-agent"
