@@ -60,6 +60,7 @@ alias push="git push origin head"
 
 # LLM
 alias ca="cursor-agent"
+alias clod="claude"
 
 ###-begin-npm-completion-###
 #
