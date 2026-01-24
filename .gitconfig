@@ -2,6 +2,7 @@
 [user]
 	# email = benjheath0@gmail.com // put email here if no override
 	name = Ben Heath
+	email = ben.heath@rechargeapps.com
 [core]
 	editor = vim
 [init]
