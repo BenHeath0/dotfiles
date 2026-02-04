@@ -13,7 +13,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup"
 FILES=(
     ".zshrc.benheath.zsh:.zshrc"
     ".gitconfig:.gitconfig"
-    "CLAUDE.md:.claude/CLAUDE.md"
+    ".claude:.claude"
 )
 
 backup_and_link() {
@@ -52,8 +52,24 @@ for entry in "${FILES[@]}"; do
 done
 
 echo ""
-echo "Installing Homebrew packages from Brewfile..."
-brew bundle --file="$DOTFILES_DIR/Brewfile"
+if [[ "$(uname)" == "Darwin" ]]; then
+    echo "Installing Homebrew packages from Brewfile..."
+    brew bundle --file="$DOTFILES_DIR/Brewfile"
+else
+    echo "Skipping Brewfile (not macOS)"
+
+    # Ensure zsh is installed and set as default shell
+    if ! command -v zsh &> /dev/null; then
+        echo "Installing zsh..."
+        sudo apt-get update && sudo apt-get install -y zsh
+    fi
+
+    if [[ "$SHELL" != *"zsh"* ]]; then
+        echo "Setting zsh as default shell..."
+        chsh -s "$(which zsh)"
+        echo "Note: Log out and back in for the shell change to take effect"
+    fi
+fi
 
 echo ""
 echo "Done! You may want to create these optional local override files:"

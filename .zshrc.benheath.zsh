@@ -61,6 +61,7 @@ alias push="git push origin head"
 # LLM
 alias ca="cursor-agent"
 alias clod="claude"
+alias dot="cd ~/dotfiles"
 
 ###-begin-npm-completion-###
 #
@@ -135,3 +136,4 @@ fi
 # Source machine-specific config if it exists
 [[ -f ~/dotfiles/.zshrc.local ]] && source ~/dotfiles/.zshrc.local
 
+export PATH="/opt/homebrew/opt/python@3.11/bin:$PATH"
