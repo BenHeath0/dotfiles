@@ -5,3 +5,8 @@
 *.local
 
 *recharge*
+
+.claude/*
+!.claude/skills/
+!.claude/skills/*
+!.claude/CLAUDE.md
