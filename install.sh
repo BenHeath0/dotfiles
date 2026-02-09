@@ -11,7 +11,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup"
 
 # Files to symlink: "source:target"
 FILES=(
-    ".zshrc.benheath.zsh:.zshrc"
+    ".zshrc:.zshrc"
     ".gitconfig:.gitconfig"
     ".claude:.claude"
 )
