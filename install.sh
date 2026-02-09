@@ -8,6 +8,13 @@ set -e
 
 DOTFILES_DIR="$HOME/dotfiles"
 BACKUP_DIR="$HOME/.dotfiles-backup"
+INSTALL_BREW=false
+
+for arg in "$@"; do
+    case "$arg" in
+        --brew) INSTALL_BREW=true ;;
+    esac
+done
 
 # Files to symlink: "source:target"
 FILES=(
@@ -61,11 +68,17 @@ else
     echo "✓ Linked ~/dev -> ~/Developer"
 fi
 
-echo ""
-if [[ "$(uname)" == "Darwin" ]]; then
-    echo "Installing Homebrew packages from Brewfile..."
-    brew bundle --file="$DOTFILES_DIR/Brewfile"
-else
+if [[ "$INSTALL_BREW" == true ]]; then
+    echo ""
+    if [[ "$(uname)" == "Darwin" ]]; then
+        echo "Installing Homebrew packages from Brewfile..."
+        brew bundle --file="$DOTFILES_DIR/Brewfile"
+    else
+        echo "Skipping Brewfile (not macOS)"
+    fi
+fi
+
+if [[ "$(uname)" != "Darwin" ]]; then
     # Ensure zsh is installed and set as default shell
     if ! command -v zsh &> /dev/null; then
         echo "Installing zsh..."
