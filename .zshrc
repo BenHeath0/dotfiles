@@ -62,6 +62,7 @@ alias push="git push origin head"
 alias ca="cursor-agent"
 alias clod="claude"
 alias dot="cd ~/dotfiles"
+alias dev="cd ~/dev"
 
 ###-begin-npm-completion-###
 #

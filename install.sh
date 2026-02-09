@@ -51,13 +51,21 @@ for entry in "${FILES[@]}"; do
     backup_and_link "$source" "$target"
 done
 
+# Symlink ~/dev -> ~/Developer for convenience
+if [[ -L "$HOME/dev" && "$(readlink "$HOME/dev")" == "$HOME/Developer" ]]; then
+    echo "✓ ~/dev already linked"
+elif [[ -e "$HOME/dev" || -L "$HOME/dev" ]]; then
+    echo "  ~/dev already exists and is not a symlink to ~/Developer — skipping"
+else
+    ln -s "$HOME/Developer" "$HOME/dev"
+    echo "✓ Linked ~/dev -> ~/Developer"
+fi
+
 echo ""
 if [[ "$(uname)" == "Darwin" ]]; then
     echo "Installing Homebrew packages from Brewfile..."
     brew bundle --file="$DOTFILES_DIR/Brewfile"
 else
-    echo "Skipping Brewfile (not macOS)"
-
     # Ensure zsh is installed and set as default shell
     if ! command -v zsh &> /dev/null; then
         echo "Installing zsh..."
