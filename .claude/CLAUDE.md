@@ -14,3 +14,7 @@ Keep changes minimal and simple. Prefer:
 - Fewer files and layers when possible
 
 Before finishing any coding task, review what you wrote and ask: "Can this be simpler?" Remove any unnecessary abstraction, indirection, or generalization that isn't immediately needed.
+
+## Bug Fixing Process
+
+When I report a bug, don't start by trying to fix it. Instead, start by writing a test that reproduces the bug. Then, have subagents try to fix the bug and prove it with a passing test.
