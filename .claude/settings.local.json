@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(readlink:*)",
+      "Bash(git -C /Users/benheath/dev log --oneline -10)",
+      "Bash(brew list:*)",
+      "Bash(zsh -lc 'which python3 && python3 --version && which python && python --version')",
+      "Bash(zsh:*)",
+      "Bash(git -C /Users/benheath/dotfiles add:*)",
+      "Bash(git -C /Users/benheath/dotfiles commit -m \"$\\(cat <<''EOF''\nchore: rename .zshrc.benheath.zsh to .zshrc\n\nThe .benheath.zsh suffix was unnecessary since this is the main zshrc.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git -C /Users/benheath/dotfiles log --oneline -5)",
+      "Bash(pyenv versions:*)",
+      "Bash(poetry:*)",
+      "Bash(echo:*)",
+      "Bash(chmod:*)",
+      "Bash(git -C /Users/benheath/dotfiles status)",
+      "Bash(git -C /Users/benheath/dotfiles diff)",
+      "Bash(git -C /Users/benheath/dotfiles diff --cached)",
+      "Bash(git -C:*)"
+    ],
+    "deny": [
+      "Bash(git *--force*)",
+      "Bash(git *--force-with-lease*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git rebase*)",
+      "Bash(git checkout .*)",
+      "Bash(git restore .*)",
+      "Bash(git clean*)",
+      "Bash(git branch -D*)",
+      "Bash(rm -rf *)"
+    ]
+  }
+}
