@@ -134,7 +134,22 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
+# nvm (lazy-loaded for faster shell startup)
+export NVM_DIR=~/.nvm
+nvm() { unset -f nvm node npm npx; source /opt/homebrew/opt/nvm/nvm.sh; nvm "$@"; }
+node() { unset -f nvm node npm npx; source /opt/homebrew/opt/nvm/nvm.sh; node "$@"; }
+npm() { unset -f nvm node npm npx; source /opt/homebrew/opt/nvm/nvm.sh; npm "$@"; }
+npx() { unset -f nvm node npm npx; source /opt/homebrew/opt/nvm/nvm.sh; npx "$@"; }
+
+# homebrew ssl (hardcoded to avoid slow brew --prefix calls)
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+
 # Source machine-specific config if it exists
 [[ -f ~/dotfiles/.zshrc.local ]] && source ~/dotfiles/.zshrc.local
 
-export PATH="/opt/homebrew/opt/python@3.11/bin:$PATH"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
