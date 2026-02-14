@@ -20,6 +20,7 @@ done
 FILES=(
     ".zshrc:.zshrc"
     ".gitconfig:.gitconfig"
+    ".gitignore_global:.gitignore_global"
     ".claude:.claude"
 )
 
@@ -57,6 +58,10 @@ for entry in "${FILES[@]}"; do
     target="${entry##*:}"
     backup_and_link "$source" "$target"
 done
+
+# Set global gitignore
+git config --global core.excludesFile ~/.gitignore_global
+echo "✓ Set global core.excludesFile"
 
 # Symlink ~/dev -> ~/Developer for convenience
 if [[ -L "$HOME/dev" && "$(readlink "$HOME/dev")" == "$HOME/Developer" ]]; then

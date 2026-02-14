@@ -5,6 +5,7 @@
 	email = ben.heath@rechargeapps.com
 [core]
 	editor = vim
+	excludesFile = /Users/benheath/.gitignore_global
 [init]
 	defaultBranch = main
 [alias]
