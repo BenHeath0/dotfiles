@@ -20,9 +20,9 @@ Commit pending changes using Conventional Commits format. When changes are unrel
 
 ## Conventional Commits Format
 
-- **Subject line:** `type(scope): description` — under 72 characters
+- **Subject line:** `type: description` — under 72 characters
 - **Types:** `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `build`, `ci`, `perf`
-- **Scope:** optional, a short noun describing the area (e.g., `auth`, `api`, `cli`)
+- **Scope:** omit by default. Project-level CLAUDE.md files may specify a different convention
 - **Body:** only add one if the "why" isn't obvious from the subject line
 - End the commit message with: `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 
