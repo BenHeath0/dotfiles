@@ -18,7 +18,8 @@
       "Bash(git -C /Users/benheath/dotfiles status)",
       "Bash(git -C /Users/benheath/dotfiles diff)",
       "Bash(git -C /Users/benheath/dotfiles diff --cached)",
-      "Bash(git -C:*)"
+      "Bash(git -C:*)",
+      "Bash(/Users/benheath/.claude/usage-data/report.html)"
     ],
     "deny": [
       "Bash(git *--force*)",
