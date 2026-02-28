@@ -1,6 +1,7 @@
 ---
 name: yeet
 description: Commit, push, and open a draft MR/PR in one shot. Runs /commit, pushes the branch, then creates a draft merge/pull request.
+disable-model-invocation: true
 ---
 
 # Yeet

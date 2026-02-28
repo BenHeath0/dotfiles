@@ -1,6 +1,7 @@
 ---
 name: commit
 description: Commit current changes using Conventional Commits. Analyzes pending changes, groups unrelated changes into separate focused commits, and asks for confirmation before executing.
+disable-model-invocation: true
 ---
 
 # Smart Commit
