@@ -7,6 +7,8 @@ dir=$(basename "$cwd")
 
 branch=$(cd "$cwd" 2>/dev/null && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')
 
+model=$(echo "$input" | jq -r '.model.display_name // empty')
+
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 
 context_bar=''
@@ -20,4 +22,9 @@ if [ -n "$used_pct" ]; then
   context_bar=" [${bar} ${used_pct}%]"
 fi
 
-printf '%s (%s)%s' "$dir" "$branch" "$context_bar"
+model_part=''
+if [ -n "$model" ]; then
+  model_part=" | $model"
+fi
+
+printf '%s (%s)%s%s' "$dir" "$branch" "$model_part" "$context_bar"
