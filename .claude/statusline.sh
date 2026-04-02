@@ -27,4 +27,11 @@ if [ -n "$model" ]; then
   model_part=" | $model"
 fi
 
-printf '%s (%s)%s%s' "$dir" "$branch" "$model_part" "$context_bar"
+line1="$dir ($branch)"
+line2="${model_part# | }${context_bar}"
+
+if [ -n "$line2" ]; then
+  printf '%s\n%s' "$line1" "$line2"
+else
+  printf '%s' "$line1"
+fi
