@@ -17,12 +17,21 @@ Before finishing any coding task, review what you wrote and ask: "Can this be si
 
 ## Bug Fixing Process
 
-When I report a bug, don't start by trying to fix it. Instead, start by writing a test that reproduces the bug. Then, have subagents try to fix the bug and prove it with a passing test.
+- When I report a bug, don't start by trying to fix it. Instead, start by writing a test that reproduces the bug. Then, have subagents try to fix the bug and prove it with a passing test.
 
 ## Plans
 
-When creating an implementation plan, always save it to `.claude/plans/` in the current working directory. Use the filename format `YYYY-MM-DD-<short-description>.md` (e.g., `2026-02-14-add-auth.md`). Include the date at the top of the plan file.
+- When creating an implementation plan, always save it to `.claude/plans/` in the current working directory. Use the filename format `YYYY-MM-DD-<short-description>.md` (e.g., `2026-02-14-add-auth.md`). Include the date at the top of the plan file.
 
 ## Commits
 
-Use Conventional Commits without a scope by default: `feat: ...`, `fix: ...`, `chore: ...`, etc. Project-level CLAUDE.md files may override this.
+- In Poetry projects, always use `poetry run git commit` instead of bare `git commit`. Pre-commit hooks need the Poetry virtualenv to access project dependencies.
+
+## Poetry Dependencies
+
+- Use `poetry add <package>` to add new dependencies — don't manually edit pyproject.toml
+- To update a specific package, use `poetry update <package>` — avoid bare `poetry update` which updates everything
+- Always commit both `pyproject.toml` and `poetry.lock` together
+- Use `poetry show --outdated` to check what's outdated before updating
+- When pinning versions, use `^` (e.g., `poetry add package@^1.2`) — never `>=`, which allows unbounded upgrades
+- Never manually edit `poetry.lock`

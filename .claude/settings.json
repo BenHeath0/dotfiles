@@ -1,5 +1,5 @@
 {
-  "model": "opus",
+  "model": "opus[1m]",
   "hooks": {
     "Stop": [
       {
@@ -15,5 +15,59 @@
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
+  },
+  "effortLevel": "high",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(which:*)",
+      "Bash(readlink:*)",
+      "Bash(pwd:*)",
+      "Bash(echo:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)"
+    ],
+    "deny": [
+      "Bash(git *--force*)",
+      "Bash(git *--force-with-lease*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git rebase*)",
+      "Bash(git checkout .*)",
+      "Bash(git restore .*)",
+      "Bash(git clean*)",
+      "Bash(git branch -D*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(rm -fr *)",
+      "Bash(truncate *)",
+      "Bash(shred *)",
+      "Bash(dd *)",
+      "Bash(mkfs*)",
+      "Bash(chmod -R *)",
+      "Bash(chown -R *)",
+      "Bash(shutdown*)",
+      "Bash(reboot*)",
+      "Bash(killall *)",
+      "Bash(pkill *)",
+      "Bash(*| sh)",
+      "Bash(*| sh *)",
+      "Bash(*| bash)",
+      "Bash(*| bash *)",
+      "Bash(*| zsh)",
+      "Bash(*| zsh *)"
+    ]
   }
 }
