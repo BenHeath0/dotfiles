@@ -7,9 +7,14 @@ description: Review a GitLab Merge Request or review the current branch's change
 
 Perform a code review — either on a GitLab MR or on the current branch before it becomes an MR.
 
+## Additional Documentation
+
+Additional context and guidelines live in `docs/` directories throughout the monorepo — both at the top level (`docs/`) and within packages (e.g. `packages/merchant-portal/core/docs/`). Check these when working in an unfamiliar area.
+
 ## Input
 
 The user may provide:
+
 - A GitLab MR URL (e.g. `https://gitlab.com/mygroup/myrepo/-/merge_requests/123`)
 - A project path + MR IID (e.g. `mygroup/myrepo !123`)
 - A base branch for local review (e.g. `/review-mr develop`)

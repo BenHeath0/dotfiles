@@ -53,16 +53,21 @@ alias kl="kubectl logs"
 
 # Git
 alias g="git"
-alias push="git push origin head"
+alias push="git push origin HEAD"
 
 # Git Completion
+# zstyle ':completion:*:*:git:*' script /opt/homebrew/share/bash-completion/completions/git
 # source ~/dotfiles/.git-completion.zsh
 
 # LLM
 alias ca="cursor-agent"
 alias clod="claude"
+alias ccusage="bunx ccusage"
+
+# Lazy
+alias c="code"
+alias c.="code ."
 alias dot="cd ~/dotfiles"
-alias dev="cd ~/dev"
 
 ###-begin-npm-completion-###
 #
@@ -149,7 +154,16 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 # Source machine-specific config if it exists
 [[ -f ~/dotfiles/.zshrc.local ]] && source ~/dotfiles/.zshrc.local
 
-# pyenv
+# pyenv (lazy-loaded for faster shell startup)
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+export PATH="$PYENV_ROOT/shims:$PATH"
+pyenv() { unset -f pyenv; eval "$(command pyenv init -)"; pyenv "$@"; }
+
+# bun completions
+[ -s "/Users/benheath/.bun/_bun" ] && source "/Users/benheath/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+

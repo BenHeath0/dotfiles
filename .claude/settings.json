@@ -37,6 +37,9 @@
       "Bash(python:*)",
       "Bash(python3:*)",
       "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python3 -m pytest:*)",
+      "Bash(.venv/bin/python -m pytest:*)",
       "Bash(source .venv/bin/activate)",
       "Bash(.venv/bin/*:*)",
       "Bash(pip install:*)",
@@ -45,21 +48,24 @@
       "Bash(npx vitest run:*)",
       "Bash(pnpm:*)",
       "Bash(docker compose:*)",
+      "Bash(docker compose run:*)",
+      "Bash(docker compose exec:*)",
       "Bash(docker-compose:*)",
+      "Bash(docker-compose run:*)",
       "Bash(claude sessions:*)",
-      "mcp__gitlab__gitlab_get_merge_request*",
-      "mcp__mcp-atlassian__jira_get*",
-      "mcp__mcp-atlassian__jira_search*",
-      "mcp__mcp-atlassian__confluence_get*",
-      "mcp__claude_ai_Atlassian__get*",
-      "mcp__claude_ai_Sentry__get*",
-      "mcp__claude_ai_Sentry__find*",
-      "mcp__claude_ai_Sentry__search*",
-      "mcp__claude_ai_Slack__slack_read*",
-      "mcp__claude_ai_Slack__slack_search*",
-      "mcp__shopify-dev-mcp__*",
-      "mcp__claude_ai_Atlassian__getJiraIssue",
-      "mcp__plugin_kai_watchtower__*"
+      "mcp__gitlab__gitlab_get_merge_request",
+      "mcp__gitlab__gitlab_get_merge_request_changes",
+      "mcp__gitlab__gitlab_get_repository_file",
+      "mcp__gitlab__gitlab_get_project",
+      "mcp__gitlab__gitlab_list_merge_requests",
+      "mcp__gitlab__gitlab_list_branches",
+      "mcp__gitlab__gitlab_compare_branches",
+      "mcp__mcp-atlassian__*",
+      "mcp__claude_ai_Atlassian__*",
+      "mcp__claude_ai_Sentry__*",
+      "mcp__claude_ai_Slack__*",
+      "mcp__plugin_kai_watchtower__*",
+      "mcp__plugin_kai_dba-mcp-prod__*"
     ],
     "deny": [
       "Bash(git *--force*)",
@@ -89,10 +95,26 @@
       "Bash(*| bash)",
       "Bash(*| bash *)",
       "Bash(*| zsh)",
-      "Bash(*| zsh *)"
-    ]
+      "Bash(*| zsh *)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*.secret)",
+      "Read(/Users/benheath/.ssh/**)",
+      "Read(/Users/benheath/.aws/**)",
+      "Read(/Users/benheath/.gnupg/**)"
+    ],
+    "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
+  "skillOverrides": {
+    "simplify-code": "off",
+    "write-mr": "off",
+    "yeet": "off"
+  },
   "hooks": {
     "Stop": [
       {
@@ -112,7 +134,9 @@
   "enabledPlugins": {
     "kai@kai": true,
     "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "caveman@caveman": true,
+    "shopify-ai-toolkit@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "kai": {
@@ -126,8 +150,15 @@
         "source": "github",
         "repo": "anthropics/claude-plugins-official"
       }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
     }
   },
   "effortLevel": "xhigh",
+  "tui": "default",
   "preferredNotifChannel": "terminal_bell"
 }
