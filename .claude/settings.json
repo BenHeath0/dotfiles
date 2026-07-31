@@ -136,7 +136,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "caveman@caveman": true,
-    "shopify-ai-toolkit@claude-plugins-official": true
+    "shopify-ai-toolkit@claude-plugins-official": true,
+    "po@po": true
   },
   "extraKnownMarketplaces": {
     "kai": {
@@ -155,6 +156,12 @@
       "source": {
         "source": "github",
         "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "po": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/benheath/.claude/po"
       }
     }
   },
