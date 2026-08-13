@@ -68,6 +68,10 @@
       "mcp__plugin_kai_dba-mcp-prod__*"
     ],
     "deny": [
+      "Bash(git commit)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git push:*)",
       "Bash(git *--force*)",
       "Bash(git *--force-with-lease*)",
       "Bash(git push -f*)",
@@ -109,7 +113,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "fable",
   "skillOverrides": {
     "simplify-code": "off",
     "write-mr": "off",
