@@ -10,11 +10,16 @@ cd ~/dotfiles && ./install.sh
 ```
 
 The install script will:
-- Symlink dotfiles to `~/`
-- Back up any existing files to `~/.dotfiles-backup/`
+- Symlink dotfiles to `~/` (backing up any existing files to `~/.dotfiles-backup/`)
+- Symlink VS Code settings and keybindings to `~/Library/Application Support/Code/User/` (macOS only)
+- Set `.gitignore_global` as git's global `core.excludesFile`
+- Symlink `~/dev` -> `~/Developer`
+- On Linux: install zsh and set it as the default shell
 
-To install Homebrew packages:
+To also install Homebrew packages, casks, and VS Code extensions:
 ```bash
+./install.sh --brew
+# or standalone:
 brew bundle --file=~/dotfiles/Brewfile
 ```
 
@@ -36,9 +41,13 @@ alias myproject="cd ~/work/myproject"
 
 ## Files
 
-- `.zshrc.benheath.zsh` — Main zsh config (symlinked to `~/.zshrc`)
+- `.zshrc` — Main zsh config (symlinked to `~/.zshrc`)
 - `.gitconfig` — Git aliases and settings (symlinked to `~/.gitconfig`)
-- `.bash_profile.benheath.bash` — Bash config (if needed)
-- `.git-completion.bash` — Git tab completion
+- `.gitignore_global` — Global git ignores (symlinked to `~/.gitignore_global`)
+- `.claude` — Claude Code config (symlinked to `~/.claude`)
+- `vscode/` — VS Code `settings.json` and `keybindings.json` (symlinked into `~/Library/Application Support/Code/User/`)
+- `.bash_profile.benheath.bash` / `.bash_profile.recharge.bash` — Bash configs (if needed)
+- `.git-completion.bash` / `.git-completion.zsh` — Git tab completion
 - `install.sh` — Setup script
 - `Brewfile` — Homebrew packages, casks, and VS Code extensions
+- `SETUP_PLAN.md` — Original setup planning notes
