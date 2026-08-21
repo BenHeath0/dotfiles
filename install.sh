@@ -24,6 +24,14 @@ FILES=(
     ".claude:.claude"
 )
 
+# vscode settings live under ~/Library on macos only
+if [[ "$(uname)" == "Darwin" ]]; then
+    FILES+=(
+        "vscode/settings.json:Library/Application Support/Code/User/settings.json"
+        "vscode/keybindings.json:Library/Application Support/Code/User/keybindings.json"
+    )
+fi
+
 backup_and_link() {
     local source="$1"
     local target="$2"

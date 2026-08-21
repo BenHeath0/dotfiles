@@ -1,0 +1,77 @@
+{
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "csharp.referencesCodeLens.enabled": false,
+    "debug.node.autoAttach": "on",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.accessibilitySupport": "off",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.fontSize": 14,
+    "editor.suggestSelection": "first",
+    "explorer.confirmDragAndDrop": false,
+    "extensions.autoUpdate": "off",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+    "git.autofetch": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "jest.pathToJest": "npm run test:unit",
+    "julia.symbolCacheDownload": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.jediEnabled": false,
+    "python.languageServer": "Default",
+    "security.workspace.trust.untrustedFiles": "open",
+    "sqltools.useNodeRuntime": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.env.osx": {
+        "FIG_NEW_SESSION": "1"
+    },
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "update.showReleaseNotes": false,
+    "notebook.output.textLineLimit": 60,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "editor.formatOnSave": true,
+    "laravel-pint.enable": true,
+    "volar.codeLens.references": false,
+    "workbench.colorTheme": "Plastic",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.multiCursorLimit": 20000,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.mcp.gallery.enabled": true,
+    "claudeCode.preferredLocation": "sidebar",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilotcli:claude-haiku-4.5",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
+}
