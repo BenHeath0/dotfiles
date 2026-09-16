@@ -86,6 +86,11 @@ When writing or editing code (excluding tests):
 
 - When I report a bug, don't start by trying to fix it. Instead, start by writing a test that reproduces the bug. Then, have subagents try to fix the bug and prove it with a passing test.
 
+### Running Tests
+
+- Don't run the full test suite for a project unless it is small. Never run it for big monorepos.
+- Scope test runs to the files covering your changes.
+
 ### Plans
 
 - When creating an implementation plan, always save it to `/Users/benheath/Developer/claude-plans` (a single shared location, not the working directory). Use the filename format `YYYY-MM-DD-<short-description>.md` (e.g., `2026-02-14-add-auth.md`). At the top of the file, put the date heading, then a **Session directories** section listing the primary working directory and any directories added to the session, then the plan content.
@@ -94,3 +99,23 @@ When writing or editing code (excluding tests):
 
 - If a task requires a token, API key, or credential and it is not present in the expected location (e.g. `~/.claude/.env`, an env var, a config file the tool points to), STOP IMMEDIATELY and ask me how to proceed.
 - Do not search around for the credential in other files, do not attempt to fetch it from elsewhere, and do not try alternate auth paths. Just tell me what is missing, where you looked, and wait for direction.
+
+### Naming in Conversation
+
+**Never use "I" or "you" for actors. Use "Claude" and "Ben".**
+
+- When Claude is the actor, say "Claude" — not "I", "me", "my", or "we".
+- When Ben is the actor, say "Ben" — not "you" or "your".
+- Applies to plans, task lists, status updates, questions, and summaries.
+
+| Instead of | Write |
+| --- | --- |
+| "I'll add the validation, then you run the tests" | "Claude will add the validation, then Ben runs the tests" |
+| "Do you want me to refactor this?" | "Does Ben want Claude to refactor this?" |
+| "Let's split this into two steps" | "Claude will split this into two steps" |
+| "Your config is missing a key" | "Ben's config is missing a key" |
+
+Exceptions — write normally:
+
+- Code, comments, commit messages, PR descriptions, and other committed artifacts.
+- Direct quotes from docs, errors, or Ben's own words.
