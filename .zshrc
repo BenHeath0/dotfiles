@@ -68,6 +68,16 @@ alias ccusage="bunx ccusage"
 alias c="code"
 alias c.="code ."
 alias dot="cd ~/dotfiles"
+alias dev="cd ~/Developer"
+
+# Update all git repos in ~/Developer
+git-update-all() {
+  for d in ~/Developer/*/; do
+    [ -d "$d/.git" ] || continue
+    echo "── ${d:t}"
+    git -C "$d" pull --ff-only
+  done
+}
 
 ###-begin-npm-completion-###
 #
