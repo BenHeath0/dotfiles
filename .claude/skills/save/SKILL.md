@@ -1,5 +1,5 @@
 ---
-name: save-plan
+name: save
 description: Save the current implementation plan to /Users/benheath/Developer/claude-plans as a dated markdown file.
 disable-model-invocation: false
 ---
@@ -25,6 +25,7 @@ Write the current implementation plan to `/Users/benheath/Developer/claude-plans
      ```
 
    - Then the plan content.
+
 5. **Confirm** — Tell the user the file path that was written.
 
 ## Rules
