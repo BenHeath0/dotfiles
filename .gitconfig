@@ -37,3 +37,7 @@
 # Machine-specific overrides (email, signing key, etc.)
 [include]
     path = ~/.gitconfig.local
+[branch]
+	autoSetupMerge = simple
+[push]
+	autoSetupRemote = true
