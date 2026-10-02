@@ -9,6 +9,9 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# git worktree helpers (wta, wtc)
+source ~/dotfiles/worktrees.zsh
+
 # Commands I forget about all the time
 # docker rmi -f $(docker images -a -q)
 # psql -h localhost -p 5432 -U scengen -d scengen_meta
