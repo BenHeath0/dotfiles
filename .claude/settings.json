@@ -131,6 +131,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -z \"$(find ~/.claude/.last-checkup -mtime -30 2>/dev/null)\" ]; then echo '{\"systemMessage\":\"Monthly Claude Code checkup is due: run /monthly-checkup\"}'; fi"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
