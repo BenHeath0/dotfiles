@@ -19,7 +19,7 @@ If no ticket is provided, ask for one before proceeding.
 ## Process
 
 ### 1. Fetch the ticket
-Call `mcp__claude_ai_Atlassian__getJiraIssue` with the ticket ID (requires `cloudId` and `issueIdOrKey`). To get the `cloudId`, call `mcp__claude_ai_Atlassian__getAccessibleAtlassianResources` first if unknown. Extract:
+Fetch it with the Atlassian MCP's `getJiraIssue` tool (needs `cloudId` and `issueIdOrKey`; get the `cloudId` from `getAccessibleAtlassianResources` if unknown). Extract:
 - Title and description
 - Ticket type (bug, feature, task, etc.)
 - Acceptance criteria (if present)
@@ -41,7 +41,7 @@ After reading the ticket and exploring the code, identify any gaps. Ask the user
 Do not ask questions that can be answered by reading the ticket or the code. Keep questions focused — ask only what you genuinely need to proceed confidently.
 
 ### 4. Plan
-Save an implementation plan to `.claude/plans/YYYY-MM-DD-<ticket-id>.md`. The plan should include:
+Save an implementation plan to `/Users/benheath/Developer/claude-plans/YYYY-MM-DD-<ticket-id>.md`, following the Plans rule in CLAUDE.md. The plan should include:
 - Summary of the ticket
 - Files to change and why
 - Implementation approach

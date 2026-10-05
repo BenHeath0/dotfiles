@@ -1,40 +1,48 @@
 ---
 name: save
-description: Save the current implementation plan to /Users/benheath/Developer/claude-plans as a dated markdown file.
+description: Save a write-up of what was done in the current session (findings, changes, open items) to /Users/benheath/Developer/claude-plans as a dated markdown file.
 disable-model-invocation: false
 ---
 
-# Save Plan
+# Save Session
 
-Write the current implementation plan to `/Users/benheath/Developer/claude-plans` (a single shared location for all plans, regardless of which project you are working in).
+Write up what happened in this session to `/Users/benheath/Developer/claude-plans` (a single shared location, regardless of which project you are working in). Write it so a new thread with zero context can pick up the work.
+
+Focus hint from Ben (may be empty): $ARGUMENTS
 
 ## Process
 
-1. **Identify the plan** — Gather the current plan from the conversation context. If there is no explicit plan but actions were taken during the session (code written, files edited, bugs fixed, etc.), retroactively construct a plan that documents what was done: summarize the goal, list the steps that were taken, and note the files changed. Mark all steps as completed.
-2. **Choose a filename** — Use the format `YYYY-MM-DD-<short-description>.md` where the date is today and the short description is a kebab-case summary of the plan (e.g., `2026-03-05-add-auth.md`).
-3. **Ensure directory exists** — Create `/Users/benheath/Developer/claude-plans` if it doesn't already exist.
-4. **Write the file** — Save the plan as markdown with this structure:
-   - First line: the date as a heading (e.g., `# 2026-03-05`)
-   - Next, a **Session directories** section listing the primary working directory and any additional directories added to the session (via `/add-dir`). Use the directories shown in the environment context. Example:
+1. **Check for an earlier save from this session** — search `/Users/benheath/Developer/claude-plans` for `Session: ${CLAUDE_SESSION_ID}`. If a file matches, update that file instead of creating a new one.
+2. **Check git state** — for each repo modified this session, run `git status --short` and `git log --oneline -5` to fill in the Changes section. Run nothing else: no new queries, scripts, or investigation. Write from what is already in the conversation.
+3. **Choose a filename** (new files only) — `YYYY-MM-DD-<short-description>.md`, using today's date and a 2-4 word kebab-case topic. If that name already exists, append a numeric suffix (e.g., `-2`).
+4. **Write the file** using the format below.
+5. **Confirm** — tell Ben the file path and whether it was created or updated.
 
-     ```
-     ## Session directories
+## Format
 
-     - /Users/benheath/dotfiles (primary)
-     - /Users/benheath/other-project (added)
-     ```
+```
+# YYYY-MM-DD — <topic>
 
-   - Then the plan content.
+Session: ${CLAUDE_SESSION_ID}
+Repos: <repo> (<branch> @ <short sha>), <repo> (read only)
+Related: <earlier claude-plans file on the same topic>
+```
 
-5. **Confirm** — Tell the user the file path that was written.
+Then these sections, in this order. Omit any section that would be empty.
+
+- **Context** — what Ben asked and why, with source links (Slack, Jira, Sentry, MR, dashboards).
+- **Key identifiers** — store ids, job ids, tables, tickets, branches, hosts. Use a table if there are more than a few.
+- **What was done** — short list of the steps taken.
+- **Findings** — conclusions and root cause, with `file:line` references.
+- **Ruled out / corrections** — dead ends, disproven hypotheses, and conclusions reversed during the session.
+- **Changes** — commits, uncommitted files, MRs. State plainly what is committed, pushed, merged, or deployed, and what is not.
+- **Queries & commands** — final versions of SQL, PromQL, or shell commands worth reusing.
+- **Open items** — unanswered questions, next steps, and anything not verified.
 
 ## Rules
 
-- Always save to `/Users/benheath/Developer/claude-plans` — never to `.claude/plans/` in the working directory
-- Always use today's date for the filename and heading
-- Always include the **Session directories** section at the top, after the date heading
-- If only the primary working directory is present (no extra directories were added), still list it and note that no additional directories were added
-- Keep the short description to 2-4 words in kebab-case
-- Do not overwrite an existing file — if the filename already exists, append a numeric suffix (e.g., `-2`)
-- If saving an existing plan, write it exactly as it exists in the conversation; do not embellish or restructure it
-- If retroactively creating a plan from session actions, keep it factual — document what was actually done, not what could have been done
+- `Repos:` lists repos actually read or modified, not session directories. Include branch and short sha for modified repos; mark the rest `read only`. Omit the line if no repo was touched.
+- `Related:` links earlier files in `claude-plans` covering the same topic, judged from filenames. Omit the line if none.
+- Keep it factual — record what was done and found, not what could have been done. Use the final state of each conclusion; put superseded ones under Ruled out / corrections.
+- If a focus hint was given, weight the write-up toward it.
+- When updating an existing file, revise its sections to reflect the current state rather than appending a second copy.

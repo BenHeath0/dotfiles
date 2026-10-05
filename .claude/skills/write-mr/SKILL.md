@@ -13,7 +13,7 @@ The user may optionally provide:
 
 - A base branch to diff against (e.g. `/write-mr develop`)
 
-If no base branch is provided, default to `master`.
+If no base branch is provided, use the remote's default branch: `git symbolic-ref --short refs/remotes/origin/HEAD`, without the `origin/` prefix.
 
 ## Process
 
@@ -23,10 +23,10 @@ If no base branch is provided, default to `master`.
    - `git diff <base>...HEAD --stat` to see which files changed
    - `git diff <base>...HEAD` to get the full diff
 2. **Read changed files** — For files where the diff alone isn't enough to understand intent, read the full file for context. Use parallel reads.
-3. **Fill in the template** — Using the diff, commit messages, and file context, write a complete MR description following the template below. Every section must be filled in thoughtfully — do not leave placeholders or TODOs.
+3. **Fill in the template** — Using the diff, commit messages, and file context, write a complete MR description following the template below. Fill in every section. The only placeholders allowed are **[needs input]** ones (see General rules).
 4. **Create the MR** — Use `glab` to create a draft MR:
    ```
-   glab mr create --draft --title "<title>" --description "<body>" --yes
+   glab mr create --draft --target-branch "<base>" --title "<title>" --description "<body>" --yes
    ```
    Use a heredoc for the description body to preserve formatting.
 5. **Report** — Output the MR URL so the user can navigate to it.
@@ -36,7 +36,7 @@ If no base branch is provided, default to `master`.
 ```markdown
 ## Summary
 
-<!-- 2-4 sentences: what changed and why -->
+<!-- what changed and why -->
 
 ## Type of change
 
@@ -54,6 +54,7 @@ If no base branch is provided, default to `master`.
 ## How to QA
 
 <!-- Bulleted list of concrete steps a reviewer can follow to verify the changes -->
+```
 
 ## Voice and tone rules
 
@@ -103,4 +104,3 @@ These rules are derived from Ben's actual MR writing style. Follow them closely.
 - Do NOT make any code changes — this is read-only
 - Keep the MR title under 70 characters
 - Do NOT include "Co-Authored-By: Claude..." in the MR description
-```

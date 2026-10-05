@@ -1,6 +1,6 @@
 ---
 name: simplify-code
-description: Final-pass code simplification review. Use when the user asks to "simplify", "clean up", or "review for simplicity" after a coding session. Performs a systematic review of recent changes to remove unnecessary complexity.
+description: Propose-then-apply pass that strips over-engineering (unneeded abstractions, indirection, unused options) from code changed this session, and waits for approval before editing. Use when the user wants simplifications proposed for review rather than applied directly.
 ---
 
 # Code Simplification Pass
