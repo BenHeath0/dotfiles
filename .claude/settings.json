@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CAVEMAN_DEFAULT_MODE": "lite"
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -101,13 +104,26 @@
       "Read(/Users/benheath/.aws/**)",
       "Read(/Users/benheath/.gnupg/**)"
     ],
-    "defaultMode": "auto"
+    "defaultMode": "auto",
+    "additionalDirectories": [
+      "/Users/benheath/Developer/notes/sessions"
+    ]
   },
-  "model": "fable",
+  "model": "opus",
   "skillOverrides": {
     "simplify-code": "off",
     "write-mr": "off",
-    "yeet": "off"
+    "yeet": "off",
+    "commit": "off",
+    "jira": "off",
+    "mr-check": "off",
+    "docx": "off",
+    "pdf": "off",
+    "pptx": "off",
+    "xlsx": "off",
+    "morning": "off",
+    "skill-creator": "off",
+    "import-memory": "off"
   },
   "hooks": {
     "Stop": [
@@ -148,11 +164,10 @@
   },
   "enabledPlugins": {
     "kai@kai": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "caveman@caveman": false,
-    "shopify-ai-toolkit@claude-plugins-official": true,
-    "po@po": true
+    "typescript-lsp@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": false,
+    "caveman@caveman": true,
+    "shopify-ai-toolkit@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "kai": {
