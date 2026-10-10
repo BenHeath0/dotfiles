@@ -187,12 +187,6 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
-    },
-    "po": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/benheath/.claude/po"
-      }
     }
   },
   "effortLevel": "high",
