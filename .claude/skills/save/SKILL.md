@@ -1,18 +1,18 @@
 ---
 name: save
-description: Save a write-up of what was done in the current session (findings, changes, open items) to /Users/benheath/Developer/claude-plans as a dated markdown file.
+description: Save a write-up of what was done in the current session (findings, changes, open items) to /Users/benheath/Developer/notes/sessions as a dated markdown file.
 disable-model-invocation: false
 ---
 
 # Save Session
 
-Write up what happened in this session to `/Users/benheath/Developer/claude-plans` (a single shared location, regardless of which project you are working in). Write it so a new thread with zero context can pick up the work.
+Write up what happened in this session to `/Users/benheath/Developer/notes/sessions` (a single shared location, regardless of which project you are working in). Write it so a new thread with zero context can pick up the work.
 
 Focus hint from Ben (may be empty): $ARGUMENTS
 
 ## Process
 
-1. **Check for an earlier save from this session** — search `/Users/benheath/Developer/claude-plans` for `Session: ${CLAUDE_SESSION_ID}`. If a file matches, update that file instead of creating a new one.
+1. **Check for an earlier save from this session** — search `/Users/benheath/Developer/notes/sessions` for `Session: ${CLAUDE_SESSION_ID}`. If a file matches, update that file instead of creating a new one.
 2. **Check git state** — for each repo modified this session, run `git status --short` and `git log --oneline -5` to fill in the Changes section. Run nothing else: no new queries, scripts, or investigation. Write from what is already in the conversation.
 3. **Choose a filename** (new files only) — `YYYY-MM-DD-<short-description>.md`, using today's date and a 2-4 word kebab-case topic. If that name already exists, append a numeric suffix (e.g., `-2`).
 4. **Write the file** using the format below.
@@ -25,7 +25,7 @@ Focus hint from Ben (may be empty): $ARGUMENTS
 
 Session: ${CLAUDE_SESSION_ID}
 Repos: <repo> (<branch> @ <short sha>), <repo> (read only)
-Related: <earlier claude-plans file on the same topic>
+Related: <earlier notes/sessions file on the same topic>
 ```
 
 Then these sections, in this order. Omit any section that would be empty.
@@ -42,7 +42,7 @@ Then these sections, in this order. Omit any section that would be empty.
 ## Rules
 
 - `Repos:` lists repos actually read or modified, not session directories. Include branch and short sha for modified repos; mark the rest `read only`. Omit the line if no repo was touched.
-- `Related:` links earlier files in `claude-plans` covering the same topic, judged from filenames. Omit the line if none.
+- `Related:` links earlier files in `notes/sessions` covering the same topic, judged from filenames. Omit the line if none.
 - Keep it factual — record what was done and found, not what could have been done. Use the final state of each conclusion; put superseded ones under Ruled out / corrections.
 - If a focus hint was given, weight the write-up toward it.
 - When updating an existing file, revise its sections to reflect the current state rather than appending a second copy.

@@ -98,7 +98,7 @@ When writing or editing code (excluding tests):
 
 ### Plans
 
-- When creating an implementation plan, always save it to `/Users/benheath/Developer/claude-plans` (a single shared location, not the working directory). Use the filename format `YYYY-MM-DD-<short-description>.md` (e.g., `2026-02-14-add-auth.md`). Start the file with a `# YYYY-MM-DD — <topic>` heading, then a `Repos:` line listing the repos the plan touches, then the plan content.
+- When creating an implementation plan, always save it to `/Users/benheath/Developer/notes/sessions` (a single shared location, not the working directory). Use the filename format `YYYY-MM-DD-<short-description>.md` (e.g., `2026-02-14-add-auth.md`). Start the file with a `# YYYY-MM-DD — <topic>` heading, then a `Repos:` line listing the repos the plan touches, then the plan content.
 
 ### Missing Tokens / Credentials
 

@@ -14,3 +14,6 @@
 !.claude/skills/
 !.claude/skills/**
 !.claude/sounds
+.claude/skills/synced/
+.claude/skills/shopify
+.claude/skills/.trash
