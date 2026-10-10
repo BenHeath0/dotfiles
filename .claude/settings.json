@@ -192,5 +192,47 @@
   "effortLevel": "high",
   "tui": "fullscreen",
   "verbose": false,
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(glab mr create:*) in Recharge GitLab repos under ~/Developer",
+      "Bash(kubectl get:*) and Bash(kubectl describe:*) for non-production namespaces"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(kubectl delete:*) and Bash(kubectl apply:*) targeting namespaces containing prod or production",
+      "gcloud commands targeting *-prod-* buckets or production GCP resources",
+      "docker-compose down/rm with volume removal flags"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: Recharge (self-hosted GitLab) — ~/Developer is a directory of repos with no git remote of its own",
+      "**Cloud provider(s)**: GCP and Kubernetes",
+      "**Repository visibility**: assume private for repos under ~/Developer",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: ejson-encrypted config files",
+      "**Default / protected branches**: not queryable here (no remote/repo derivable from this working directory)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: Recharge's self-hosted GitLab (via glab)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: Recharge-internal tooling and observability hosts — treat as internal, not confirmed trust anchors",
+      "**Internal package registry**: Recharge's self-hosted GitLab package registry",
+      "**Sensitive data locations & audiences**: *.ejson config files (especially production/stage), files or models with `secret` in the name, tests/secrets.json, .env files across repos — treat as containing credentials/secrets; share only with audiences cleared at the named+specifics bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any host/namespace/bucket/config file containing `prod` or `production` as a whole word/segment",
+      "**Protected deployment namespaces / environments**: k8s namespaces/overlays named with `production` or `prod`; Makefile targets that apply to or open consoles on prod",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or segment; terraform configs",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development across Recharge repos under ~/Developer (backend/API, frontend, Dapr services, data/analytics, infra)",
+      "**Trusted repo**: the git repository Claude Code is started in and its configured remote(s); each repo under ~/Developer carries its own trust scope per its own remotes",
+      "**Org-specific CLIs**: gcloud, kubectl, glab (GitLab CLI, per CLAUDE.md routing), poetry, docker-compose",
+      "routine under ~/Developer/notes/sessions/ prefix: plan files are always written there per global CLAUDE.md convention, not the working directory"
+    ]
+  },
+  "theme": "dark"
 }
