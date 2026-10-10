@@ -190,7 +190,13 @@
     }
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "tui": "fullscreen",
+  "theme": "dark",
   "verbose": false,
   "preferredNotifChannel": "terminal_bell",
   "agentPushNotifEnabled": true,
@@ -233,6 +239,5 @@
       "**Org-specific CLIs**: gcloud, kubectl, glab (GitLab CLI, per CLAUDE.md routing), poetry, docker-compose",
       "routine under ~/Developer/notes/sessions/ prefix: plan files are always written there per global CLAUDE.md convention, not the working directory"
     ]
-  },
-  "theme": "dark"
+  }
 }
