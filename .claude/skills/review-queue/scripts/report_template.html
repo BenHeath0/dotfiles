@@ -1,0 +1,205 @@
+<title>Review Queue, {{TITLE_DATE}}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: single reading column; verdict buckets stacked in the order Ben asked for, each MR a ruled block */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #1b2230;
+  --muted: #5d6676;
+  --rule: #dde1e8;
+  --accent: #2f5fb3;
+  --ok: #1f7a4d;
+  --ok-bg: #e5f3eb;
+  --warn: #8a5a00;
+  --warn-bg: #fbf0d9;
+  --bad: #b3261e;
+  --bad-bg: #fbe5e3;
+  --code-bg: #eef0f4;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --surface: #1a1f27; --fg: #e3e7ee; --muted: #9aa3b2; --rule: #2c333e;
+    --accent: #7ea6ec; --ok: #6fcf9b; --ok-bg: #173226; --warn: #e9b65a; --warn-bg: #352a14;
+    --bad: #f08a80; --bad-bg: #3a1c1a; --code-bg: #242a34; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --surface: #1a1f27; --fg: #e3e7ee; --muted: #9aa3b2; --rule: #2c333e;
+  --accent: #7ea6ec; --ok: #6fcf9b; --ok-bg: #173226; --warn: #e9b65a; --warn-bg: #352a14;
+  --bad: #f08a80; --bad-bg: #3a1c1a; --code-bg: #242a34; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.55;
+}
+.wrap {
+  max-width: 860px; margin: 0 auto;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 40px;
+}
+h1 { font-size: 26px; font-weight: 600; margin: 0; text-wrap: balance; }
+h2 { font-size: 19px; font-weight: 600; margin: 0; text-wrap: balance; display: flex; align-items: center; gap: 10px; }
+h3 { font-size: 16px; font-weight: 500; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 8px 0 0; max-width: 65ch; }
+.tally { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.tally a { text-decoration: none; color: inherit; border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+.tally a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tally .n { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.tally .l { font-size: 13px; }
+.t-ok { background: var(--ok-bg); color: var(--ok); }
+.t-warn { background: var(--warn-bg); color: var(--warn); }
+.t-bad { background: var(--bad-bg); color: var(--bad); }
+section { display: flex; flex-direction: column; gap: 14px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.sec-note { color: var(--muted); margin: -6px 0 0; font-size: 14px; }
+.mr {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+}
+.mr header { display: flex; flex-direction: column; gap: 4px; }
+.ref { font-family: var(--mono); font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500; }
+.ref:hover { text-decoration: underline; }
+.ref:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
+.chip { font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rule); }
+.chip.draft { border-style: dashed; }
+.summary { margin: 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
+.aside { margin: 0; font-size: 13px; color: var(--muted); }
+.findings { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.finding { padding-left: 12px; border-left: 3px solid var(--rule); min-width: 0; }
+.finding.should { border-left-color: var(--warn); }
+.finding.must { border-left-color: var(--bad); }
+.finding .loc { font-family: var(--mono); font-size: 12.5px; color: var(--fg); overflow-wrap: anywhere; }
+.finding p { margin: 2px 0 0; font-size: 14px; }
+code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); padding: 0 4px; border-radius: 3px; overflow-wrap: anywhere; }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; user-select: none; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--ok); cursor: pointer; }
+.check input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mr.done { opacity: 0.55; }
+.mr.done .check { color: var(--ok); font-weight: 500; }
+.mr.done h3 { text-decoration: line-through; text-decoration-thickness: 1px; }
+.progress { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 14px; font-size: 14px; }
+.progress strong { font-variant-numeric: tabular-nums; }
+#save-status { color: var(--muted); font-size: 13px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 16px; max-width: 70ch; }
+@media (max-width: 520px) {
+  .tally { grid-template-columns: 1fr; }
+  .mr { padding: 14px 14px; }
+}
+</style>
+
+<div class="wrap">
+  <div>
+    <h1>Review queue for ben.heath</h1>
+    <p class="lede">The {{TOTAL}} open MRs that list Ben as a reviewer, each run through <code>/review-code</code> on {{DATE}}. Each MR sits in the bucket of its most severe finding.{{SKIPPED_NOTE}}</p>
+    <nav class="tally" aria-label="Verdict counts">
+      <a class="t-ok" href="#approve"><span class="n">{{CLEAN_COUNT}}</span><span class="l">approve, no concerns</span></a>
+      <a class="t-warn" href="#should"><span class="n">{{SHOULD_COUNT}}</span><span class="l">should fix ({{SHOULD_FINDINGS}} findings)</span></a>
+      <a class="t-bad" href="#must"><span class="n">{{MUST_COUNT}}</span><span class="l">must fix</span></a>
+    </nav>
+    <div class="progress"><span><strong id="progress-count">0 of {{TOTAL}}</strong> reviewed</span><span id="save-status" role="status"></span></div>
+  </div>
+
+  <section id="approve">
+    <h2><span class="dot" style="background: var(--ok)"></span>Approve, no concerns</h2>
+    <p class="sec-note">No must fix or should fix findings.</p>
+    {{CLEAN}}
+  </section>
+
+  <section id="should">
+    <h2><span class="dot" style="background: var(--warn)"></span>Should fix</h2>
+    <p class="sec-note">These don't block merging. Non-draft MRs come first because they are the ones waiting on approvals now. Long paths are shortened; hover for the full path.</p>
+    {{SHOULD}}
+  </section>
+
+  <section id="must">
+    <h2><span class="dot" style="background: var(--bad)"></span>Must fix</h2>
+    <p class="sec-note">These block merging.</p>
+    {{MUST}}
+  </section>
+
+  <footer>A separate subagent reviewed each MR with the kai <code>review-code</code> skill, reading the MR's source branch through glab. Nothing was posted or approved in GitLab. These findings come from those automated reviews and were not checked again by hand.</footer>
+</div>
+
+<script>
+(() => {
+  const boxes = [...document.querySelectorAll('input[data-mr]')];
+  const countEl = document.getElementById('progress-count');
+  const statusEl = document.getElementById('save-status');
+  const READ_ONLY = ['not_writer', 'not_granted', 'not_declared', 'capability_disabled', 'capability_removed', 'consent_required'];
+  let checked = {};
+  let timer = null;
+  let readOnly = false;
+  let retried = false;
+  const artifactReady = window.claude?.use ? window.claude.use('artifact') : Promise.resolve(null);
+
+  const setStatus = text => { statusEl.textContent = text; };
+
+  const render = () => {
+    boxes.forEach(box => {
+      box.checked = !!checked[box.dataset.mr];
+      box.closest('.mr').classList.toggle('done', box.checked);
+    });
+    countEl.textContent = `${boxes.filter(b => b.checked).length} of ${boxes.length}`;
+  };
+
+  const save = async () => {
+    const artifact = await artifactReady;
+    if (!artifact) {
+      readOnly = true;
+      setStatus("Saving isn't available in this view. Checks stay until the page reloads.");
+      return;
+    }
+    setStatus('Saving…');
+    try {
+      await artifact.publish({ 'checked.json': JSON.stringify({ checked }) });
+      setStatus('Saved');
+    } catch (err) {
+      const code = err?.code;
+      if (code === 'conflict') {
+        setStatus('A newer version was saved elsewhere. Reloading.');
+      } else if (READ_ONLY.includes(code)) {
+        readOnly = true;
+        setStatus('Read-only view. Checks are not saved.');
+      } else if (code === 'rate_limited') {
+        setStatus('Saving too often. Will try again shortly.');
+        timer = setTimeout(save, 10000);
+      } else if (!retried) {
+        retried = true;
+        setStatus('Save failed. Trying once more.');
+        timer = setTimeout(save, 2000 + Math.random() * 2000);
+      } else {
+        setStatus("Couldn't save. Checks stay until the page reloads.");
+      }
+    }
+  };
+
+  boxes.forEach(box => box.addEventListener('change', () => {
+    if (box.checked) checked[box.dataset.mr] = true;
+    else delete checked[box.dataset.mr];
+    render();
+    if (readOnly) return;
+    setStatus('Unsaved');
+    clearTimeout(timer);
+    retried = false;
+    timer = setTimeout(save, 1500);
+  }));
+
+  render();
+  fetch('checked.json')
+    .then(res => (res.ok ? res.json() : {}))
+    .then(data => {
+      checked = { ...(data.checked || {}), ...checked };
+      render();
+    })
+    .catch(() => {});
+})();
+</script>
